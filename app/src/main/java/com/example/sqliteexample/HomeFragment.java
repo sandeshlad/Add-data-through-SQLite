@@ -41,14 +41,21 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         BnSave = (Button) view.findViewById(R.id.addContactButton);
         BnSave.setOnClickListener(this);
 
+        BnView = (Button) view.findViewById(R.id.viewContactButton);
+        BnView.setOnClickListener(this);
+
         return view;
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.addContactButton:
                 dbOpListener.dBOpPerformed(0);
+                break;
+
+            case R.id.viewContactButton:
+                dbOpListener.dBOpPerformed(1);
                 break;
         }
     }
@@ -58,10 +65,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         super.onAttach(context);
 
         Activity activity = (Activity) context;
-        try{
+        try {
             dbOpListener = (OnDbOpListener) activity;
-        } catch (ClassCastException e){
-            throw new ClassCastException(activity.toString()+"Must implement the interface method...");
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString() + "Must implement the interface method...");
         }
 
     }
